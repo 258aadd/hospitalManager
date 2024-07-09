@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface DepartmentsService {
     PageInfo getDepartListPage(String page, int pid);
+
+    List<Departments> getDepartListAll(String pid);
 }

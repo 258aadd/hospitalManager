@@ -8,6 +8,7 @@ import com.ml.service.DepartmentsService;
 import com.ml.util.MybatisUtil;
 import org.apache.ibatis.session.SqlSession;
 
+import java.util.Collections;
 import java.util.List;
 
 public class DepartmentsServiceImpl implements DepartmentsService {
@@ -27,6 +28,22 @@ public class DepartmentsServiceImpl implements DepartmentsService {
             PageInfo<Departments> pageInfo = new PageInfo<>(departList);
             System.out.println(pageInfo);
             return pageInfo;
+
+        }catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            MybatisUtil.closeSqlSession();
+        }
+        return null;
+    }
+
+    @Override
+    public List<Departments> getDepartListAll(String pid) {
+        try{
+            SqlSession sqlSession = MybatisUtil.getSqlSession();
+            DepartmentsMapper departmentsMapper = sqlSession.getMapper(DepartmentsMapper.class);
+            List<Departments> departList = departmentsMapper.getDepartList(Integer.valueOf(pid));
+            return departList;
 
         }catch (Exception e){
             e.printStackTrace();
