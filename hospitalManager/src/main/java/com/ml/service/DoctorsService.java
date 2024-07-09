@@ -6,4 +6,6 @@ import java.sql.SQLException;
 
 public interface DoctorsService {
     Doctors login(String name, String password);
+
+    boolean addDoctors(String cid, String num);
 }

@@ -22,4 +22,27 @@ public class DoctorsServiceImpl implements DoctorsService {
         }
         return null;
     }
+
+    @Override
+    public boolean addDoctors(String cid, String num) {
+        SqlSession sqlSession = MybatisUtil.getSqlSession();
+        try {
+            DoctorsMapper doctorsMapper = sqlSession.getMapper(DoctorsMapper.class);
+            String jobnumber = doctorsMapper.getJobNumberMax();
+            int jobNum = Integer.parseInt(jobnumber);
+            for (int i = 0; i < Integer.parseInt(num); i++) {
+                doctorsMapper.addDoctor(cid,++jobNum);
+            }
+            sqlSession.commit();
+            return true;
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+            sqlSession.rollback();
+        } finally {
+            MybatisUtil.closeSqlSession();
+        }
+        return false;
+
+    }
 }
