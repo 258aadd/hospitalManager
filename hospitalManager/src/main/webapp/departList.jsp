@@ -30,21 +30,23 @@
       //alert(pid);
       $.getJSON("${pageContext.request.contextPath}/depart/getChildDepartList?pid="+pid,function (date){
         //alert(2);
-        var trstr = "<tr id='trchild_"+pid+"'><td colspan='4'><table class=\"table table-hover text-center\">";
-        $.each(date,function (i,item) {
-          //alert(item.department_name);
-          trstr += "<tr><td>" + item.department_id + "</td><td>" + item.department_name + "</td><td>" + item.department_description;
-          trstr += "</td><td>操作</td></tr>";
-        })
-        trstr += "</table></td></tr>";
+        if (date && date.length > 0) {
+          var trstr = "<tr id='trchild_" + pid + "'><td colspan='4'><table class=\"table table-hover text-center\">";
+          $.each(date, function (i, item) {
+            //alert(item.department_name);
+            trstr += "<tr><td>" + item.department_id + "</td><td>" + item.department_name + "</td><td>" + item.department_description;
+            trstr += "</td><td>操作</td></tr>";
+          })
+          trstr += "</table></td></tr>";
 
-        var childid = $("#trchild_"+pid).attr("id");
-        var getid = "trchild_"+pid;
+          var childid = $("#trchild_" + pid).attr("id");
+          var getid = "trchild_" + pid;
 
-        if(childid == getid){
-          $("#trchild_"+pid).remove();
-        }else {
-          $("#tr_"+pid).after(trstr);
+          if (childid == getid) {
+            $("#trchild_" + pid).remove();
+          } else {
+            $("#tr_" + pid).after(trstr);
+          }
         }
       });
 
