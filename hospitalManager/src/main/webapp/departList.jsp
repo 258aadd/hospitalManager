@@ -24,6 +24,29 @@
   <link rel="stylesheet" href="css/admin.css">
   <script src="js/jquery.js"></script>
   <script src="js/pintuer.js"></script>
+
+  <script>
+    function getChildList(pid) {
+      //alert(pid);
+      $.getJSON("${pageContext.request.contextPath}/depart/getChildDepartList?pid="+pid,function (date){
+        alert(date);
+      });
+
+      var trstr = "<tr id='trchild_"+pid+"'><td colspan='4'><table><tr><td>123</td><td>心</td><td>简介</td><td>操作</td></tr></table></td></tr>"
+      var childid = $("#trchild_"+pid).attr("id");
+      var getid = "trchild_"+pid;
+
+      if(childid == getid){
+        $("#trchild_"+pid).remove();
+      }else {
+        $("#tr_"+pid).after(trstr);
+      }
+
+      //alert(childid);
+
+    }
+  </script>
+
 </head>
 <body>
 <form method="post" action="" id="listform">
@@ -43,11 +66,21 @@
       </tr>
       <volist name="list" id="vo">
         <c:forEach items="${pageInfo.list}" var="depart">
-          <tr>
+          <tr id="tr_${depart.department_id}" onclick="getChildList(${depart.department_id})">
             <td>${depart.department_id}</td>
             <td>${depart.department_name}</td>
             <td>${depart.department_description}</td>
-            <td><div class="button-group"> <a class="button border-main" href="add.html"><span class="icon-edit"></span> 修改</a> <a class="button border-red" href="javascript:void(0)" onclick="return del(1,1,1)"><span class="icon-trash-o"></span> 删除</a> </div></td>
+            <td>
+              <div class="button-group">
+                <a class="button border-main" href="add.html">
+                  <span class="icon-edit"></span> 添加
+                </a>
+                <%--<a class="button border-red" href="javascript:void(0)" onclick="return del(1,1,1)">
+                  <span class="icon-trash-o">
+                  </span> 删除
+                </a> --%>
+              </div>
+            </td>
           </tr>
         </c:forEach>
 
