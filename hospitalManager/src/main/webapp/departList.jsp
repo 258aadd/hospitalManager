@@ -35,7 +35,7 @@
           $.each(date, function (i, item) {
             //alert(item.department_name);
             trstr += "<tr><td>" + item.department_id + "</td><td>" + item.department_name + "</td><td>" + item.department_description;
-            trstr += "</td><td><div class=\"button-group\"> <a class=\"button border-main\" href=\"${pageContext.request.contextPath}/depart/toUpdate?did="+item.department_id+"\"><span class=\"icon-edit\"></span> 修改</a> <a class=\"button border-red\" href=\"javascript:void(0)\" onclick=\"return del(1,1,1)\"><span class=\"icon-trash-o\"></span> 删除</a> </div></td></td></tr>";
+            trstr += "</td><td><div class=\"button-group\"> <a class=\"button border-main\" href=\"${pageContext.request.contextPath}/depart/toUpdate?did="+item.department_id+"\"><span class=\"icon-edit\"></span> 修改</a> <a class=\"button border-red\" href=\"javascript:void(0)\" onclick=\"deleteById("+item.department_id+")\"><span class=\"icon-trash-o\"></span> 删除</a> </div></td></td></tr>";
           })
           trstr += "</table></td></tr>";
 
@@ -51,6 +51,15 @@
       });
 
     }
+
+    function deleteById(id) {
+      //alert(id);
+      if(confirm("确认删除？")){
+        //alert("删除成功");
+        window.location.href="${pageContext.request.contextPath}/depart/deleteById?id="+id;
+      }
+    }
+
   </script>
 
 </head>

@@ -1,10 +1,7 @@
 package com.ml.mapper;
 
 import com.ml.pojo.Departments;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -18,8 +15,11 @@ public interface DepartmentsMapper {
     int addDepartment(Departments departments) throws SQLException;
 
     @Select("select * from departments where department_id = #{did}")
-    Departments getDepartmentById(@Param("did") String did);
+    Departments getDepartmentById(@Param("did") String did) throws SQLException;
 
     @Update("update departments set department_name = #{department_name}, department_description = #{department_description} where department_id = #{department_id}")
-    void updateDepartment(Departments departments);
+    void updateDepartment(Departments departments) throws SQLException;
+
+    @Delete("delete from departments where department_id = #{did}")
+    void deleteById(@Param("did") String id) throws SQLException;
 }

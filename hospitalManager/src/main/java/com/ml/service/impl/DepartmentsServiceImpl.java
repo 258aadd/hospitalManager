@@ -101,4 +101,21 @@ public class DepartmentsServiceImpl implements DepartmentsService {
         }
         return false;
     }
+
+    @Override
+    public boolean deleteById(String id) {
+        SqlSession sqlSession = MybatisUtil.getSqlSession();
+        try{
+            DepartmentsMapper departmentsMapper = sqlSession.getMapper(DepartmentsMapper.class);
+            departmentsMapper.deleteById(id);
+            sqlSession.commit();
+            return true;
+        }catch (Exception e){
+            sqlSession.rollback();
+            e.printStackTrace();
+        } finally {
+            MybatisUtil.closeSqlSession();
+        }
+        return false;
+    }
 }
