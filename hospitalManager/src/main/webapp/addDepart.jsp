@@ -23,12 +23,13 @@
 <div class="panel admin-panel">
     <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>增加内容</strong></div>
     <div class="body-content">
-        <form method="post" class="form-x" action="${pageContext.request.contextPath}/depart/addDepart?pid=0">
+        <form method="post" class="form-x" action="${pageContext.request.contextPath}/depart/addDepart">
             <div class="form-group">
                 <div class="label">
                     <label>科室名称：</label>
                 </div>
                 <div class="field">
+                    <input type="hidden" name="pid" value="${param.pid}">
                     <input type="text" class="input w50" value="" name="departname" data-validate="required:请输入科室名称" />
                     <div class="tips"></div>
                 </div>

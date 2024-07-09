@@ -60,7 +60,7 @@
     <div class="panel-head"><strong class="icon-reorder"> 内容列表</strong> <a href="" style="float:right; display:none;">添加字段</a></div>
     <div class="padding border-bottom">
       <ul class="search" style="padding-left:10px;">
-        <li> <a class="button border-main icon-plus-square-o" href="addDepart.jsp"> 添加内容</a> </li>
+        <li> <a class="button border-main icon-plus-square-o" href="addDepart.jsp?pid=0"> 添加内容</a> </li>
       </ul>
     </div>
     <table class="table table-hover text-center">
@@ -78,7 +78,7 @@
             <td>${depart.department_description}</td>
             <td>
               <div class="button-group">
-                <a class="button border-main" href="add.html">
+                <a class="button border-main" href="addDepart.jsp?pid=${depart.department_id}">
                   <span class="icon-edit"></span> 添加
                 </a>
                 <%--<a class="button border-red" href="javascript:void(0)" onclick="return del(1,1,1)">
