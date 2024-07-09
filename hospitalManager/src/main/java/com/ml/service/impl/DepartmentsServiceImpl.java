@@ -69,4 +69,36 @@ public class DepartmentsServiceImpl implements DepartmentsService {
         }
         return false;
     }
+
+    @Override
+    public Departments getDepartmentById(String did) {
+        try{
+            SqlSession sqlSession = MybatisUtil.getSqlSession();
+            DepartmentsMapper departmentsMapper = sqlSession.getMapper(DepartmentsMapper.class);
+            Departments departments = departmentsMapper.getDepartmentById(did);
+            return departments;
+        }catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            MybatisUtil.closeSqlSession();
+        }
+        return null;
+    }
+
+    @Override
+    public boolean updateDepartment(Departments departments) {
+        SqlSession sqlSession = MybatisUtil.getSqlSession();
+        try{
+            DepartmentsMapper departmentsMapper = sqlSession.getMapper(DepartmentsMapper.class);
+            departmentsMapper.updateDepartment(departments);
+            sqlSession.commit();
+            return true;
+        }catch (Exception e){
+            sqlSession.rollback();
+            e.printStackTrace();
+        } finally {
+            MybatisUtil.closeSqlSession();
+        }
+        return false;
+    }
 }

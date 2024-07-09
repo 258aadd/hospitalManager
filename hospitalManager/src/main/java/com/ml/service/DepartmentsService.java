@@ -11,4 +11,8 @@ public interface DepartmentsService {
     List<Departments> getDepartListAll(String pid);
 
     boolean addDepartment(Departments departments);
+
+    Departments getDepartmentById(String did);
+
+    boolean updateDepartment(Departments departments);
 }
