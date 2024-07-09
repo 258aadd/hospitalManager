@@ -45,6 +45,8 @@
   <h2><span class="icon-user"></span>医院管理</h2>
   <ul style="display:block">
     <li><a href="${pageContext.request.contextPath}/depart/getDepartList" target="right"><span class="icon-caret-right"></span>科室管理</a></li>
+    <li><a href="${pageContext.request.contextPath}/depart/getDepartList" target="right"><span class="icon-caret-right"></span>职称管理</a></li>
+    <li><a href="${pageContext.request.contextPath}/doctorList.jsp" target="right"><span class="icon-caret-right"></span>医生管理</a></li>
     <li><a href="pass.html" target="right"><span class="icon-caret-right"></span>修改密码</a></li>
     <li><a href="page.html" target="right"><span class="icon-caret-right"></span>单页管理</a></li>
     <li><a href="adv.html" target="right"><span class="icon-caret-right"></span>首页轮播</a></li>
