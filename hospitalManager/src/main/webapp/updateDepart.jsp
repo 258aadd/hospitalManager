@@ -34,7 +34,7 @@
                     <label>科室名称：</label>
                 </div>
                 <div class="field">
-                    <input type="hidden" name="pid" value="${departments.department_id}">
+                    <input type="hidden" name="id" value="${departments.department_id}">
                     <input type="text" class="input w50" value="${departments.department_name}" name="departname" data-validate="required:请输入科室名称" />
                     <div class="tips"></div>
                 </div>

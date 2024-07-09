@@ -25,6 +25,18 @@ public class DepartmentsServiceImpl implements DepartmentsService {
             }
 
             List<Departments> departList = departmentsMapper.getDepartList(pid);
+
+            for (Departments depart : departList) {
+                Integer departmentId = depart.getDepartment_id();
+                int count = departmentsMapper.getChildCount(departmentId);
+                if(count > 0){
+                    depart.setHaveChild(true);
+                }else{
+                    depart.setHaveChild(false);
+                }
+
+            }
+
             PageInfo<Departments> pageInfo = new PageInfo<>(departList);
             System.out.println(pageInfo);
             return pageInfo;

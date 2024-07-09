@@ -22,4 +22,7 @@ public interface DepartmentsMapper {
 
     @Delete("delete from departments where department_id = #{did}")
     void deleteById(@Param("did") String id) throws SQLException;
+
+    @Select("select count(*) from departments where department_pid = #{departmentId}")
+    int getChildCount(Integer departmentId);
 }

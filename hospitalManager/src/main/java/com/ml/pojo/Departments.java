@@ -8,6 +8,16 @@ public class Departments {
     private String department_path;
     private String department_description;
 
+    public boolean haveChild;
+
+    public boolean isHaveChild() {
+        return haveChild;
+    }
+
+    public void setHaveChild(boolean haveChild) {
+        this.haveChild = haveChild;
+    }
+
     public Integer getDepartment_id() {
         return department_id;
     }
@@ -54,5 +64,18 @@ public class Departments {
 
     public void setDepartment_description(String department_description) {
         this.department_description = department_description;
+    }
+
+    @Override
+    public String toString() {
+        return "Departments{" +
+                "department_id=" + department_id +
+                ", department_name='" + department_name + '\'' +
+                ", department_pid=" + department_pid +
+                ", department_level=" + department_level +
+                ", department_path='" + department_path + '\'' +
+                ", department_description='" + department_description + '\'' +
+                ", haveChild=" + haveChild +
+                '}';
     }
 }
