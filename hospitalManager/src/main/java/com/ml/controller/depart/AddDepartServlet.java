@@ -42,6 +42,9 @@ public class AddDepartServlet extends HttpServlet {
         }
 
         boolean flag = departmentsService.addDepartment(departments);
+        if(flag){
+            resp.sendRedirect(req.getContextPath()+"/depart/getDepartList");
+        }
 
     }
 }

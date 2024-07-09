@@ -52,4 +52,21 @@ public class DepartmentsServiceImpl implements DepartmentsService {
         }
         return null;
     }
+
+    @Override
+    public boolean addDepartment(Departments departments) {
+        SqlSession sqlSession = MybatisUtil.getSqlSession();
+        try{
+            DepartmentsMapper departmentsMapper = sqlSession.getMapper(DepartmentsMapper.class);
+            departmentsMapper.addDepartment(departments);
+            sqlSession.commit();
+            return true;
+        }catch (Exception e){
+            sqlSession.rollback();
+            e.printStackTrace();
+        } finally {
+            MybatisUtil.closeSqlSession();
+        }
+        return false;
+    }
 }
