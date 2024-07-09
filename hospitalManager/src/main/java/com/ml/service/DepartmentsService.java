@@ -9,4 +9,6 @@ public interface DepartmentsService {
     PageInfo getDepartListPage(String page, int pid);
 
     List<Departments> getDepartListAll(String pid);
+
+    boolean addDepartment(Departments departments);
 }
