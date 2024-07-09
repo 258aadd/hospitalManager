@@ -74,6 +74,7 @@
             <groupId>com.alibaba</groupId>
             <artifactId></artifactId>
             aaa
+            bbb
         </dependency>-->
 
     </dependencies>
