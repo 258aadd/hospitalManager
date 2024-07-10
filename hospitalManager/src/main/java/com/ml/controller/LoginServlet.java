@@ -45,7 +45,7 @@ public class LoginServlet extends HttpServlet {
                 req.getSession().setAttribute("doctors", doctors);
                 resp.sendRedirect(req.getContextPath() + "/doctorIndex.jsp");
             } else {
-                resp.sendRedirect( req.getContextPath() + "/login.jsp?flag=f");
+                resp.sendRedirect( req.getContextPath() + "/login.jsp?flag=false");
             }
         }
 
