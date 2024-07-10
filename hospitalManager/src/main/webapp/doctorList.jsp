@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="C" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     String contextPath = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + contextPath + "/";
@@ -37,10 +38,17 @@
                     <li>
                         <select name="cid" class="input" style="width:200px; line-height:17px;" onchange="changesearch()">
                             <option value="">请选择科室</option>
-                            <option value="">产品分类</option>
-                            <option value="">产品分类</option>
-                            <option value="">产品分类</option>
-                            <option value="">产品分类</option>
+                            <C:forEach items="${dlistLevelt}" var="d">
+                                <option value="${d.department_id}">${d.department_name}</option>
+                            </C:forEach>
+                        </select>
+                    </li>
+                    <li>
+                        <select name="cid" class="input" style="width:200px; line-height:17px;" onchange="changesearch()">
+                            <option value="">请选择职称</option>
+                            <C:forEach items="${ptlist}" var="pt">
+                                <option value="${pt.id}">${pt.title_name}</option>
+                            </C:forEach>
                         </select>
                     </li>
                 </if>
