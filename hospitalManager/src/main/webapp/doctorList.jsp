@@ -30,6 +30,16 @@
         function submitFormData() {
             $("#listform").submit();
         }
+
+        function getPage(page) {
+            $("#page").val(page);
+            $("#listform").submit();
+        }
+
+        function deleteById(id){
+            if(confirm("Are you sure?"));
+            window.location.href="${pageContext.request.contextPath}/doctor/deleteById";
+        }
     </script>
 </head>
 <body>
@@ -48,7 +58,7 @@
                                 <select name="did" class="input" style="width:200px; line-height:17px;" onchange="changesearch()">
                                     <option value="">请选择科室</option>
                                     <C:forEach items="${dlistLevelt}" var="d">
-                                        <option value="${d.department_id}">${d.department_name}</option>
+                                        <option value="${d.department_id}" ${doctorsQuery.did == d.department_id ? "selected":""}>${d.department_name}</option>
                                     </C:forEach>
                                 </select>
                             </li>
@@ -56,7 +66,7 @@
                                 <select name="pid" class="input" style="width:200px; line-height:17px;" onchange="changesearch()">
                                     <option value="">请选择职称</option>
                                     <C:forEach items="${ptlist}" var="pt">
-                                        <option value="${pt.id}">${pt.title_name}</option>
+                                        <option value="${pt.id}" ${doctorsQuery.pid == pt.id ? "selected":""}>${pt.title_name}</option>
                                     </C:forEach>
                                 </select>
                             </li>
@@ -70,9 +80,10 @@
         </form>
         <table class="table table-hover text-center">
             <tr>
-                <th width="100" style="text-align:left; padding-left:20px;">编号</th>
-                <th>医生名称</th>
-                <th>医生简介</th>
+                <th width="100" style="text-align:left; padding-left:20px;">工号</th>
+                <th>姓名</th>
+                <th>科室</th>
+                <th>职称</th>
                 <th width="310">操作</th>
             </tr>
             <volist name="list" id="vo">
@@ -80,50 +91,31 @@
                     <tr id="tr_${doc.doctor_id}">
                         <td>${doc.job_number}</td>
                         <td>${doc.name}</td>
-                        <td>${doc.introduction}</td>
+                        <td>${doc.departments.department_name}</td>
+                        <td>${doc.professional_titles.title_name}</td>
                         <td><div class="button-group"> <a class="button border-main" href="addDepart.jsp?pid=${doc.doctor_id}" }><span class="icon-edit"></span>添加</a > </div></td>
                     </tr>
                 </c:forEach>
                 <tr>
-                    <td style="text-align:left; padding:19px 0;padding-left:20px;"><input type="checkbox" id="checkall"/>
-                        全选 </td>
-                    <td colspan="7" style="text-align:left;padding-left:20px;"><a href="javascript:void(0)" class="button border-red icon-trash-o" style="padding:5px 15px;" onclick="DelSelect()"> 删除</a> <a href="javascript:void(0)" style="padding:5px 15px; margin:0 10px;" class="button border-blue icon-edit" onclick="sorts()"> 排序</a> 操作：
-                        <select name="ishome" style="padding:5px 15px; border:1px solid #ddd;" onchange="changeishome(this)">
-                            <option value="">首页</option>
-                            <option value="1">是</option>
-                            <option value="0">否</option>
-                        </select>
-                        <select name="isvouch" style="padding:5px 15px; border:1px solid #ddd;" onchange="changeisvouch(this)">
-                            <option value="">推荐</option>
-                            <option value="1">是</option>
-                            <option value="0">否</option>
-                        </select>
-                        <select name="istop" style="padding:5px 15px; border:1px solid #ddd;" onchange="changeistop(this)">
-                            <option value="">置顶</option>
-                            <option value="1">是</option>
-                            <option value="0">否</option>
-                        </select>
-                        &nbsp;&nbsp;&nbsp;
+                    <td colspan="8">
+                        <div class="pagelist">
+                            <span class="current">总记录数:${pageInfo.total}</span>
+                            <a href="${pageContext.request.contextPath}/doctor/getDoctorList?page=${pageInfo.prePage}">上一页</a>
+                            <c:forEach items="${pageInfo.navigatepageNums}" var="num">
+                                <c:choose>
+                                    <c:when test="${num == pageInfo.pageNum}">
+                                        <span class="current">${num}</span>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a href="${pageContext.request.contextPath}/doctor/getDoctorList?page=${num}">${num}</a>
+                                    </c:otherwise>
+                                </c:choose>
+                            </c:forEach>
+                            <a href="${pageContext.request.contextPath}/doctor/getDoctorList?page=${pageInfo.nextPage}">下一页</a>
+                            <a href="${pageContext.request.contextPath}/doctor/getDoctorList?page=${pageInfo.pages}">尾页</a>
+                        </div></td>
+                </tr>
 
-                        移动到：
-                        <select name="movecid" style="padding:5px 15px; border:1px solid #ddd;" onchange="changecate(this)">
-                            <option value="">请选择分类</option>
-                            <option value="">产品分类</option>
-                            <option value="">产品分类</option>
-                            <option value="">产品分类</option>
-                            <option value="">产品分类</option>
-                        </select>
-                        <select name="copynum" style="padding:5px 15px; border:1px solid #ddd;" onchange="changecopy(this)">
-                            <option value="">请选择复制</option>
-                            <option value="5">复制5条</option>
-                            <option value="10">复制10条</option>
-                            <option value="15">复制15条</option>
-                            <option value="20">复制20条</option>
-                        </select></td>
-                </tr>
-                <tr>
-                    <td colspan="8"><div class="pagelist"> <a href="">上一页</a> <span class="current">1</span><a href="">2</a><a href="">3</a><a href="">下一页</a><a href="">尾页</a> </div></td>
-                </tr>
             </volist>
         </table>
 </div>
