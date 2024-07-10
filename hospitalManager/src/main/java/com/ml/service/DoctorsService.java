@@ -12,4 +12,6 @@ public interface DoctorsService {
     boolean addDoctors(String cid, String num);
 
     PageInfo getDoctorListPage(DoctorsQuery doctorsQuery);
+
+    boolean deleteById(String id);
 }

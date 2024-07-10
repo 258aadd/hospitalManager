@@ -37,8 +37,8 @@
         }
 
         function deleteById(id){
-            if(confirm("Are you sure?"));
-            window.location.href="${pageContext.request.contextPath}/doctor/deleteById";
+            if(confirm("确认删除?"));
+            window.location.href="${pageContext.request.contextPath}/doctor/deleteById?id="+id;
         }
     </script>
 </head>
@@ -51,10 +51,11 @@
 
                 <div class="padding border-bottom">
                     <ul class="search" style="padding-left:10px;">
-                        <li> <a class="button border-main icon-plus-square-o" href="${pageContext.request.contextPath}/addDoctor.jsp"> 添加内容</a> </li>
+                        <li> <a class="button border-main icon-plus-square-o" href="${pageContext.request.contextPath}/addDoctor.jsp"> 添加医生</a> </li>
                         <li>搜索：</li>
                         <if condition="$iscid eq 1">
                             <li>
+                                <input type="hidden" name="page" id="page" value="1">
                                 <select name="did" class="input" style="width:200px; line-height:17px;" onchange="changesearch()">
                                     <option value="">请选择科室</option>
                                     <C:forEach items="${dlistLevelt}" var="d">
@@ -72,8 +73,8 @@
                             </li>
                         </if>
                         <li>
-                            <input type="text" placeholder="请输入医生姓名" name="dname" class="input" style="width:250px; line-height:17px;display:inline-block" />
-                            <input type="text" placeholder="请输入医生工号" name="jobnum" class="input" style="width:250px; line-height:17px;display:inline-block" />
+                            <input type="text" placeholder="请输入医生姓名" name="dname" value="${doctorsQuery.dname}" class="input" style="width:250px; line-height:17px;display:inline-block" />
+                            <input type="text" placeholder="请输入医生工号" name="jobnum" value="${doctorsQuery.jobnum}" class="input" style="width:250px; line-height:17px;display:inline-block" />
                             <a href="javascript:void(0)" class="button border-main icon-search" onclick="submitFormData()" > 搜索</a></li>
                     </ul>
                 </div>
@@ -82,6 +83,7 @@
             <tr>
                 <th width="100" style="text-align:left; padding-left:20px;">工号</th>
                 <th>姓名</th>
+                <th>照片</th>
                 <th>科室</th>
                 <th>职称</th>
                 <th width="310">操作</th>
@@ -91,28 +93,29 @@
                     <tr id="tr_${doc.doctor_id}">
                         <td>${doc.job_number}</td>
                         <td>${doc.name}</td>
+                        <td width="10%"><img src="${pageContext.request.contextPath}/${doc.avatar}" alt="" width="70" height="50"></td>
                         <td>${doc.departments.department_name}</td>
                         <td>${doc.professional_titles.title_name}</td>
-                        <td><div class="button-group"> <a class="button border-main" href="addDepart.jsp?pid=${doc.doctor_id}" }><span class="icon-edit"></span>添加</a > </div></td>
+                        <td><div class="button-group"> <a class="button border-main" href="javascript:void(0)" onclick="deleteById(${doc.doctor_id})" }><span class="icon-edit"></span>删除</a > </div></td>
                     </tr>
                 </c:forEach>
                 <tr>
-                    <td colspan="8">
+                    <td colspan="6">
                         <div class="pagelist">
                             <span class="current">总记录数:${pageInfo.total}</span>
-                            <a href="${pageContext.request.contextPath}/doctor/getDoctorList?page=${pageInfo.prePage}">上一页</a>
+                            <a href="javascript:void(0)" onclick="getPage(${pageInfo.prePage})">上一页</a>
                             <c:forEach items="${pageInfo.navigatepageNums}" var="num">
                                 <c:choose>
                                     <c:when test="${num == pageInfo.pageNum}">
                                         <span class="current">${num}</span>
                                     </c:when>
                                     <c:otherwise>
-                                        <a href="${pageContext.request.contextPath}/doctor/getDoctorList?page=${num}">${num}</a>
+                                        <a href="javascript:void(0)" onclick="getPage(${num})">${num}</a>
                                     </c:otherwise>
                                 </c:choose>
                             </c:forEach>
-                            <a href="${pageContext.request.contextPath}/doctor/getDoctorList?page=${pageInfo.nextPage}">下一页</a>
-                            <a href="${pageContext.request.contextPath}/doctor/getDoctorList?page=${pageInfo.pages}">尾页</a>
+                            <a href="javascript:void(0)" onclick="getPage(${pageInfo.nextPage})">下一页</a>
+                            <a href="javascript:void(0)" onclick="getPage(${pageInfo.pages})">尾页</a>
                         </div></td>
                 </tr>
 

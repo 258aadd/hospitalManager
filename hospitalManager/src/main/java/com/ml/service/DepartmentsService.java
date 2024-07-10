@@ -18,5 +18,5 @@ public interface DepartmentsService {
 
     boolean deleteById(String id);
 
-    List<Departments> getDepartListLevel(int i);
+    List<Departments> getDepartListLevel(Integer i);
 }

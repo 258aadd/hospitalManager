@@ -104,6 +104,9 @@
                     <a class="button border-main" href="addDepart.jsp?pid=${depart.department_id}">
                       <span class="icon-edit"></span> 添加
                     </a>
+                    <a class="button border-red" onclick="deleteById(${depart.department_id})">
+                      <span class="icon-trash-o"></span> 删除
+                    </a>
                   </div>
                 </td>
               </tr>

@@ -5,6 +5,7 @@ import com.ml.pojo.DoctorsQuery;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -21,4 +22,8 @@ public interface DoctorsMapper {
     void addDoctor(@Param("did") String did,@Param("jobNum") int jobNum) throws SQLException;
 
     List<Doctors> getDoctorList(DoctorsQuery doctorsQuery) throws SQLException;
+
+    @Update("update doctors set state=1 where doctor_id=#{id}")
+    void deleteById(String id) throws SQLException;
+
 }

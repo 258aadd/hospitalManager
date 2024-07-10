@@ -17,6 +17,16 @@ public class Doctors {
     private Departments departments;
     private Professional_titles professional_titles;
 
+    private Integer state;//0正常 1删除
+
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
+    }
+
     public Departments getDepartments() {
         return departments;
     }

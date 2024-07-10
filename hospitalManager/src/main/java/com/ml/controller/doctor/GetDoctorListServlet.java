@@ -35,8 +35,10 @@ public class GetDoctorListServlet extends HttpServlet {
         System.out.println(doctorsQuery);
 
         PageInfo pageInfo = doctorsService.getDoctorListPage(doctorsQuery);
-
+        System.out.println();
+        System.out.println(pageInfo);
         req.setAttribute("pageInfo", pageInfo);
+        req.setAttribute("doctorsQuery", doctorsQuery);
         req.getRequestDispatcher("/doctorList.jsp").forward(req, resp);
 
     }

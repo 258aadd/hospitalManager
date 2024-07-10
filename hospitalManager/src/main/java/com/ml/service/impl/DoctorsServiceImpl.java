@@ -57,7 +57,7 @@ public class DoctorsServiceImpl implements DoctorsService {
             DoctorsMapper doctorsMapper = sqlSession.getMapper(DoctorsMapper.class);
 
             String page = doctorsQuery.getPage();
-            if(page != null && ! "".equals(page)){
+            if(page != null && !"".equals(page)){
                 PageHelper.startPage(Integer.valueOf(page), 5);
             } else {
                 PageHelper.startPage(1, 5);
@@ -78,5 +78,23 @@ public class DoctorsServiceImpl implements DoctorsService {
             MybatisUtil.closeSqlSession();
         }
         return null;
+    }
+
+    @Override
+    public boolean deleteById(String id) {
+        SqlSession sqlSession = MybatisUtil.getSqlSession();
+        try {
+            DoctorsMapper doctorsMapper = sqlSession.getMapper(DoctorsMapper.class);
+            doctorsMapper.deleteById(id);
+            sqlSession.commit();
+            return true;
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+            sqlSession.rollback();
+        } finally {
+            MybatisUtil.closeSqlSession();
+        }
+        return false;
     }
 }

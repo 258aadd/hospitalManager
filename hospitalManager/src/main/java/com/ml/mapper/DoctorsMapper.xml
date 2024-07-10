@@ -22,6 +22,7 @@
             <if test="pid != null and pid !=''">
                 and d.professional_title_id = #{pid}
             </if>
+            and state = 0
         </where>
 
     </select>
