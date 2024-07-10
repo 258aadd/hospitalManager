@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ml.mapper.DoctorsMapper">
+
+    <select id="getDoctorList" resultMap="getDoctorInfo">
+        select * from doctors d left join departments dt on d.department_id = dt.department_id
+                                left join professional_titles pt on d.professional_title_id = pt.id
+
+        <where>
+            <if test="dname != null and dname !=''">
+                and name like concat("%",#{dname},"%")
+            </if>
+            <if test="jobnum != null and jobnum !=''">
+                and job_number = #{jobnum}
+            </if>
+            <if test="did != null and did !=''">
+                and d.department_id = #{did}
+            </if>
+            <if test="pid != null and pid !=''">
+                and d.professional_title_id = #{pid}
+            </if>
+        </where>
+
+    </select>
+
+    <resultMap id="getDoctorInfo" type="com.ml.pojo.Doctors" autoMapping="true">
+        <id property="doctor_id" column="doctor_id"></id>
+        <association property="departments" javaType="com.ml.pojo.Departments" autoMapping="true"></association>
+        <association property="professional_titles" javaType="com.ml.pojo.Professional_titles" autoMapping="true"></association>
+    </resultMap>
+
+</mapper>

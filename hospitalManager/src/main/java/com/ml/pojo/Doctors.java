@@ -14,6 +14,25 @@ public class Doctors {
     private Integer department_id;
     private Integer professional_title_id;
 
+    private Departments departments;
+    private Professional_titles professional_titles;
+
+    public Departments getDepartments() {
+        return departments;
+    }
+
+    public void setDepartments(Departments departments) {
+        this.departments = departments;
+    }
+
+    public Professional_titles getProfessional_titles() {
+        return professional_titles;
+    }
+
+    public void setProfessional_titles(Professional_titles professional_titles) {
+        this.professional_titles = professional_titles;
+    }
+
     public Integer getDoctor_id() {
         return doctor_id;
     }

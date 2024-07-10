@@ -1,12 +1,16 @@
 package com.ml.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.ml.mapper.DoctorsMapper;
 import com.ml.pojo.Doctors;
+import com.ml.pojo.DoctorsQuery;
 import com.ml.service.DoctorsService;
 import com.ml.util.MybatisUtil;
 import org.apache.ibatis.session.SqlSession;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class DoctorsServiceImpl implements DoctorsService {
     @Override
@@ -44,5 +48,35 @@ public class DoctorsServiceImpl implements DoctorsService {
         }
         return false;
 
+    }
+
+    @Override
+    public PageInfo getDoctorListPage(DoctorsQuery doctorsQuery) {
+        try {
+            SqlSession sqlSession = MybatisUtil.getSqlSession();
+            DoctorsMapper doctorsMapper = sqlSession.getMapper(DoctorsMapper.class);
+
+            String page = doctorsQuery.getPage();
+            if(page != null && ! "".equals(page)){
+                PageHelper.startPage(Integer.valueOf(page), 5);
+            } else {
+                PageHelper.startPage(1, 5);
+            }
+
+            System.out.println();
+            System.out.println(doctorsQuery);
+            System.out.println();
+
+            List<Doctors> dlist = doctorsMapper.getDoctorList(doctorsQuery);
+
+            PageInfo pageInfo = new PageInfo(dlist);
+            System.out.println(pageInfo);
+            return pageInfo;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            MybatisUtil.closeSqlSession();
+        }
+        return null;
     }
 }

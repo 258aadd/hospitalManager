@@ -25,116 +25,65 @@
     <link rel="stylesheet" href="css/admin.css">
     <script src="js/jquery.js"></script>
     <script src="js/pintuer.js"></script>
+
+    <script>
+        function submitFormData() {
+            $("#listform").submit();
+        }
+    </script>
 </head>
 <body>
-<form method="post" action="" id="listform">
-    <div class="panel admin-panel">
-        <div class="panel-head"><strong class="icon-reorder"> 内容列表</strong> <a href="" style="float:right; display:none;">添加字段</a></div>
-        <div class="padding border-bottom">
-            <ul class="search" style="padding-left:10px;">
-                <li> <a class="button border-main icon-plus-square-o" href="${pageContext.request.contextPath}/addDoctor.jsp"> 添加内容</a> </li>
-                <li>搜索：</li>
-                <if condition="$iscid eq 1">
-                    <li>
-                        <select name="cid" class="input" style="width:200px; line-height:17px;" onchange="changesearch()">
-                            <option value="">请选择科室</option>
-                            <C:forEach items="${dlistLevelt}" var="d">
-                                <option value="${d.department_id}">${d.department_name}</option>
-                            </C:forEach>
-                        </select>
-                    </li>
-                    <li>
-                        <select name="cid" class="input" style="width:200px; line-height:17px;" onchange="changesearch()">
-                            <option value="">请选择职称</option>
-                            <C:forEach items="${ptlist}" var="pt">
-                                <option value="${pt.id}">${pt.title_name}</option>
-                            </C:forEach>
-                        </select>
-                    </li>
-                </if>
-                <li>
-                    <input type="text" placeholder="请输入医生姓名" name="keywords" class="input" style="width:250px; line-height:17px;display:inline-block" />
-                    <a href="javascript:void(0)" class="button border-main icon-search" onclick="changesearch()" > 搜索</a></li>
-            </ul>
-        </div>
+
+<div class="panel admin-panel">
+    <div class="panel-head"><strong class="icon-reorder"> 内容列表</strong> <a href="" style="float:right; display:none;">添加字段</a></div>
+
+        <form method="post" action="${pageContext.request.contextPath}//doctor/getDoctorList" id="listform">
+
+                <div class="padding border-bottom">
+                    <ul class="search" style="padding-left:10px;">
+                        <li> <a class="button border-main icon-plus-square-o" href="${pageContext.request.contextPath}/addDoctor.jsp"> 添加内容</a> </li>
+                        <li>搜索：</li>
+                        <if condition="$iscid eq 1">
+                            <li>
+                                <select name="did" class="input" style="width:200px; line-height:17px;" onchange="changesearch()">
+                                    <option value="">请选择科室</option>
+                                    <C:forEach items="${dlistLevelt}" var="d">
+                                        <option value="${d.department_id}">${d.department_name}</option>
+                                    </C:forEach>
+                                </select>
+                            </li>
+                            <li>
+                                <select name="pid" class="input" style="width:200px; line-height:17px;" onchange="changesearch()">
+                                    <option value="">请选择职称</option>
+                                    <C:forEach items="${ptlist}" var="pt">
+                                        <option value="${pt.id}">${pt.title_name}</option>
+                                    </C:forEach>
+                                </select>
+                            </li>
+                        </if>
+                        <li>
+                            <input type="text" placeholder="请输入医生姓名" name="dname" class="input" style="width:250px; line-height:17px;display:inline-block" />
+                            <input type="text" placeholder="请输入医生工号" name="jobnum" class="input" style="width:250px; line-height:17px;display:inline-block" />
+                            <a href="javascript:void(0)" class="button border-main icon-search" onclick="submitFormData()" > 搜索</a></li>
+                    </ul>
+                </div>
+        </form>
         <table class="table table-hover text-center">
             <tr>
-                <th width="100" style="text-align:left; padding-left:20px;">ID</th>
-                <th width="10%">排序</th>
-                <th>图片</th>
-                <th>名称</th>
-                <th>属性</th>
-                <th>分类名称</th>
-                <th width="10%">更新时间</th>
+                <th width="100" style="text-align:left; padding-left:20px;">编号</th>
+                <th>医生名称</th>
+                <th>医生简介</th>
                 <th width="310">操作</th>
             </tr>
             <volist name="list" id="vo">
-                <tr>
-                    <td style="text-align:left; padding-left:20px;"><input type="checkbox" name="id[]" value="" />
-                        1</td>
-                    <td><input type="text" name="sort[1]" value="1" style="width:50px; text-align:center; border:1px solid #ddd; padding:7px 0;" /></td>
-                    <td width="10%"><img src="images/11.jpg" alt="" width="70" height="50" /></td>
-                    <td>这是一套MUI后台精美管理系统，感谢您的支持</td>
-                    <td><font color="#00CC99">首页</font></td>
-                    <td>产品分类</td>
-                    <td>2016-07-01</td>
-                    <td><div class="button-group"> <a class="button border-main" href="add.html"><span class="icon-edit"></span> 修改</a> <a class="button border-red" href="javascript:void(0)" onclick="return del(1,1,1)"><span class="icon-trash-o"></span> 删除</a> </div></td>
-                </tr>
-                <tr>
-                    <td style="text-align:left; padding-left:20px;"><input type="checkbox" name="id[]" value="" />
-                        1</td>
-                    <td><input type="text" name="sort[1]" value="1" style="width:50px; text-align:center; border:1px solid #ddd; padding:7px 0;" /></td>
-                    <td width="10%"><img src="images/11.jpg" alt="" width="70" height="50" /></td>
-                    <td>这是一套MUI后台精美管理系统，感谢您的支持</td>
-                    <td><font color="#00CC99">首页</font></td>
-                    <td>产品分类</td>
-                    <td>2016-07-01</td>
-                    <td><div class="button-group"> <a class="button border-main" href="add.html"><span class="icon-edit"></span> 修改</a> <a class="button border-red" href="javascript:void(0)" onclick="return del(1,1,1)"><span class="icon-trash-o"></span> 删除</a> </div></td>
-                </tr>
-                <tr>
-                    <td style="text-align:left; padding-left:20px;"><input type="checkbox" name="id[]" value="" />
-                        1</td>
-                    <td><input type="text" name="sort[1]" value="1" style="width:50px; text-align:center; border:1px solid #ddd; padding:7px 0;" /></td>
-                    <td width="10%"><img src="images/11.jpg" alt="" width="70" height="50" /></td>
-                    <td>这是一套MUI后台精美管理系统，感谢您的支持</td>
-                    <td><font color="#00CC99">首页</font></td>
-                    <td>产品分类</td>
-                    <td>2016-07-01</td>
-                    <td><div class="button-group"> <a class="button border-main" href="add.html"><span class="icon-edit"></span> 修改</a> <a class="button border-red" href="javascript:void(0)" onclick="return del(1,1,1)"><span class="icon-trash-o"></span> 删除</a> </div></td>
-                </tr>
-                <tr>
-                    <td style="text-align:left; padding-left:20px;"><input type="checkbox" name="id[]" value="" />
-                        1</td>
-                    <td><input type="text" name="sort[1]" value="1" style="width:50px; text-align:center; border:1px solid #ddd; padding:7px 0;" /></td>
-                    <td width="10%"><img src="images/11.jpg" alt="" width="70" height="50" /></td>
-                    <td>这是一套MUI后台精美管理系统，感谢您的支持</td>
-                    <td><font color="#00CC99">首页</font></td>
-                    <td>产品分类</td>
-                    <td>2016-07-01</td>
-                    <td><div class="button-group"> <a class="button border-main" href="add.html"><span class="icon-edit"></span> 修改</a> <a class="button border-red" href="javascript:void(0)" onclick="return del(1,1,1)"><span class="icon-trash-o"></span> 删除</a> </div></td>
-                </tr>
-                <tr>
-                    <td style="text-align:left; padding-left:20px;"><input type="checkbox" name="id[]" value="" />
-                        1</td>
-                    <td><input type="text" name="sort[1]" value="1" style="width:50px; text-align:center; border:1px solid #ddd; padding:7px 0;" /></td>
-                    <td width="10%"><img src="images/11.jpg" alt="" width="70" height="50" /></td>
-                    <td>这是一套MUI后台精美管理系统，感谢您的支持</td>
-                    <td><font color="#00CC99">首页</font></td>
-                    <td>产品分类</td>
-                    <td>2016-07-01</td>
-                    <td><div class="button-group"> <a class="button border-main" href="add.html"><span class="icon-edit"></span> 修改</a> <a class="button border-red" href="javascript:void(0)" onclick="return del(1,1,1)"><span class="icon-trash-o"></span> 删除</a> </div></td>
-                </tr>
-                <tr>
-                    <td style="text-align:left; padding-left:20px;"><input type="checkbox" name="id[]" value="" />
-                        1</td>
-                    <td><input type="text" name="sort[1]" value="1" style="width:50px; text-align:center; border:1px solid #ddd; padding:7px 0;" /></td>
-                    <td width="10%"><img src="images/11.jpg" alt="" width="70" height="50" /></td>
-                    <td>这是一套MUI后台精美管理系统，感谢您的支持</td>
-                    <td><font color="#00CC99">首页</font></td>
-                    <td>产品分类</td>
-                    <td>2016-07-01</td>
-                    <td><div class="button-group"> <a class="button border-main" href="add.html"><span class="icon-edit"></span> 修改</a> <a class="button border-red" href="javascript:void(0)" onclick="return del(1,1,1)"><span class="icon-trash-o"></span> 删除</a> </div></td>
-                </tr>
+                <c:forEach items="${pageInfo.list}" var="doc">
+                    <tr id="tr_${doc.doctor_id}">
+                        <td>${doc.job_number}</td>
+                        <td>${doc.name}</td>
+                        <td>${doc.introduction}</td>
+                        <td><div class="button-group"> <a class="button border-main" href="addDepart.jsp?pid=${doc.doctor_id}" }><span class="icon-edit"></span>添加</a > </div></td>
+                    </tr>
+                </c:forEach>
                 <tr>
                     <td style="text-align:left; padding:19px 0;padding-left:20px;"><input type="checkbox" id="checkall"/>
                         全选 </td>
@@ -175,9 +124,9 @@
                 <tr>
                     <td colspan="8"><div class="pagelist"> <a href="">上一页</a> <span class="current">1</span><a href="">2</a><a href="">3</a><a href="">下一页</a><a href="">尾页</a> </div></td>
                 </tr>
+            </volist>
         </table>
-    </div>
-</form>
+</div>
 <script type="text/javascript">
 
     //搜索
