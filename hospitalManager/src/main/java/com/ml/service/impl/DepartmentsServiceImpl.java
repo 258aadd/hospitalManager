@@ -33,7 +33,7 @@ public class DepartmentsServiceImpl implements DepartmentsService {
                     depart.setHaveChild(true);
                 }else{
                     depart.setHaveChild(false);
-                }
+                }//lrq
 
             }
 
