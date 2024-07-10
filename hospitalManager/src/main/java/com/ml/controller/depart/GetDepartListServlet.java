@@ -33,4 +33,5 @@ public class GetDepartListServlet extends HttpServlet {
         req.setAttribute("pageInfo", pageInfo);
         req.getRequestDispatcher("/departList.jsp").forward(req, resp);
     }
+    /*全部上传标签*/
 }

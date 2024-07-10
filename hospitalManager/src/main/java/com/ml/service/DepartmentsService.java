@@ -20,3 +20,4 @@ public interface DepartmentsService {
 
     List<Departments> getDepartListLevel(Integer i);
 }
+/*全部上传标签*/

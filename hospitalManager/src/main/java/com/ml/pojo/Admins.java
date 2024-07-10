@@ -65,3 +65,4 @@ public class Admins {
         this.email = email;
     }
 }
+/*全部上传标签*/

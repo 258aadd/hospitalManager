@@ -28,4 +28,5 @@ public class ToUpdateDepartServlet extends HttpServlet {
         req.setAttribute("departments", departments);
         req.getRequestDispatcher("/updateDepart.jsp").forward(req, resp);
     }
+    /*全部上传标签*/
 }

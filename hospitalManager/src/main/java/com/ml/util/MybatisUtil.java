@@ -62,3 +62,4 @@ public class MybatisUtil {
         }
     }
 }
+/*全部上传标签*/

@@ -15,3 +15,4 @@ public interface DoctorsService {
 
     boolean deleteById(String id);
 }
+/*全部上传标签*/

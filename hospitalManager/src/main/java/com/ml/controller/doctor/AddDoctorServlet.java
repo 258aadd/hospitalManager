@@ -34,4 +34,5 @@ public class AddDoctorServlet extends HttpServlet {
         }
 
     }
+    /*全部上传标签*/
 }

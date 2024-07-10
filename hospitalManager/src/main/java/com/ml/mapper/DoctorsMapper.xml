@@ -32,5 +32,5 @@
         <association property="departments" javaType="com.ml.pojo.Departments" autoMapping="true"></association>
         <association property="professional_titles" javaType="com.ml.pojo.Professional_titles" autoMapping="true"></association>
     </resultMap>
-
+    <!--/*全部上传标签*/-->
 </mapper>

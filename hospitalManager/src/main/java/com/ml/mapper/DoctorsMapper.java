@@ -27,3 +27,4 @@ public interface DoctorsMapper {
     void deleteById(String id) throws SQLException;
 
 }
+/*全部上传标签*/

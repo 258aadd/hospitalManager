@@ -74,3 +74,4 @@ public class Doctor_schedule {
         this.remarks = remarks;
     }
 }
+/*全部上传标签*/

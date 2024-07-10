@@ -14,3 +14,4 @@
     <img src="${pageContext.request.contextPath}/${name}">
 </body>
 </html>
+<%--/*全部上传标签*/--%>

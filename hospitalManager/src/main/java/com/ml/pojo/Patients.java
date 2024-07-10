@@ -74,3 +74,4 @@ public class Patients {
         this.balance = balance;
     }
 }
+/*全部上传标签*/

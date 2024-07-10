@@ -30,3 +30,4 @@ public class UploadFileServlet extends HttpServlet {
         req.getRequestDispatcher("/success.jsp").forward(req, resp);
     }
 }
+/*全部上传标签*/

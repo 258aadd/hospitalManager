@@ -69,3 +69,4 @@ public class DoctorsQuery {
                 '}';
     }
 }
+/*全部上传标签*/

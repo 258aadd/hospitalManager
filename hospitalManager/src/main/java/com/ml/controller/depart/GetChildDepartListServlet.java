@@ -32,4 +32,5 @@ public class GetChildDepartListServlet extends HttpServlet {
         PrintWriter out = resp.getWriter();
         out.print(JSON.toJSON(dlist));
     }
+    /*全部上传标签*/
 }

@@ -98,3 +98,4 @@ public class DoctorsServiceImpl implements DoctorsService {
         return false;
     }
 }
+/*全部上传标签*/

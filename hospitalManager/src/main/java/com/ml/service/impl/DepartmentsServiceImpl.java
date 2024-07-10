@@ -146,3 +146,4 @@ public class DepartmentsServiceImpl implements DepartmentsService {
         return null;
     }
 }
+/*全部上传标签*/
