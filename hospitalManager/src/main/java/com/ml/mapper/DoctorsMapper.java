@@ -26,5 +26,7 @@ public interface DoctorsMapper {
     @Update("update doctors set state=1 where doctor_id=#{id}")
     void deleteById(String id) throws SQLException;
 
+    /*@Update("update doctors set name=#{name},avatar=#{avatar},phone=#{phone},email=#{email},introduction=#{introduction},registration_fee=#{registration_fee},entry_date=#{entry_date},professional_title_id=#{professional_title_id} where job_number=#{job_number}")
+    void updateByJobNumber(Doctors doctor) throws SQLException;*/
 }
 /*全部上传标签*/

@@ -97,5 +97,23 @@ public class DoctorsServiceImpl implements DoctorsService {
         }
         return false;
     }
+
+    @Override
+    public boolean updateDoctorByJobNumber(Doctors doctor) {
+        /*SqlSession sqlSession = MybatisUtil.getSqlSession();
+        try {
+            DoctorsMapper doctorsMapper = sqlSession.getMapper(DoctorsMapper.class);
+            doctorsMapper.updateByJobNumber(doctor);
+            sqlSession.commit();
+            return true;
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+            sqlSession.rollback();
+        } finally {
+            MybatisUtil.closeSqlSession();
+        }*/
+        return false;
+    }
 }
 /*全部上传标签*/

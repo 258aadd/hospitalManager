@@ -14,5 +14,7 @@ public interface DoctorsService {
     PageInfo getDoctorListPage(DoctorsQuery doctorsQuery);
 
     boolean deleteById(String id);
+
+    boolean updateDoctorByJobNumber(Doctors doctor);
 }
 /*全部上传标签*/
