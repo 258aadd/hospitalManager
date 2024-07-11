@@ -100,10 +100,10 @@ public class DoctorsServiceImpl implements DoctorsService {
 
     @Override
     public boolean updateDoctorByJobNumber(Doctors doctor) {
-        /*SqlSession sqlSession = MybatisUtil.getSqlSession();
+        SqlSession sqlSession = MybatisUtil.getSqlSession();
         try {
             DoctorsMapper doctorsMapper = sqlSession.getMapper(DoctorsMapper.class);
-            doctorsMapper.updateByJobNumber(doctor);
+            doctorsMapper.updateDoctorByJobNumber(doctor);
             sqlSession.commit();
             return true;
         } catch (SQLException e)
@@ -112,7 +112,7 @@ public class DoctorsServiceImpl implements DoctorsService {
             sqlSession.rollback();
         } finally {
             MybatisUtil.closeSqlSession();
-        }*/
+        }
         return false;
     }
 }

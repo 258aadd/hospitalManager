@@ -20,33 +20,18 @@ public class Doctors {
     private Integer state;//0正常 1删除
 
 
-    public Doctors(String job_number, String name, String phone, Double registration_fee, String introduction, String entry_date, String email , Integer professional_title_id) {
+    public Doctors(String job_number, String name, String phone, String email, Double registration_fee, String introduction, String entry_date, Integer professional_title_id) {
         this.job_number = job_number;
         this.name = name;
         this.phone = phone;
+        this.email = email;
         this.registration_fee = registration_fee;
         this.introduction = introduction;
         this.entry_date = entry_date;
-        this.email = email;
         this.professional_title_id = professional_title_id;
     }
 
-    public Doctors(Integer doctor_id, String job_number, String password, String name, String avatar, String phone, String email, String introduction, Double registration_fee, String entry_date, Integer department_id, Integer professional_title_id, Departments departments, Professional_titles professional_titles, Integer state) {
-        this.doctor_id = doctor_id;
-        this.job_number = job_number;
-        this.password = password;
-        this.name = name;
-        this.avatar = avatar;
-        this.phone = phone;
-        this.email = email;
-        this.introduction = introduction;
-        this.registration_fee = registration_fee;
-        this.entry_date = entry_date;
-        this.department_id = department_id;
-        this.professional_title_id = professional_title_id;
-        this.departments = departments;
-        this.professional_titles = professional_titles;
-        this.state = state;
+    public Doctors() {
     }
 
     public Integer getState() {
