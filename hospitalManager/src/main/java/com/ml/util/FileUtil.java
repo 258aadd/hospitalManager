@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -65,7 +66,9 @@ public class FileUtil {
         String originalFilename = part.getSubmittedFileName();
         String newFileName = getNewFileName(originalFilename);
         //上传文件 File
-        part.write(filePath + "/" + newFileName);;
+        part.write(filePath + "/" + newFileName);
+        System.out.println("文件上传后的磁盘路径：" + filePath);
+        //Files.copy(Paths.)
         return  "upload/" + newFileName;
     }
 

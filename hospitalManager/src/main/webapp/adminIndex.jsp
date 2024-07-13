@@ -29,7 +29,7 @@
     <h1><img src="images/y.jpg" class="radius-circle rotate-hover" height="50" alt="" />后台管理中心</h1>
   </div>
   <div class="head-l">
-    <a class="button button-little bg-green" href="" target="_blank">
+    <a class="button button-little bg-green" href="${pageContext.request.contextPath}/front/index.jsp" target="_blank">
       <span class="icon-home"></span> 前台首页
     </a> &nbsp;&nbsp;
     <%--<a href="##" class="button button-little bg-blue">

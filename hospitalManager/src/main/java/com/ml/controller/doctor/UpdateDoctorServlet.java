@@ -36,8 +36,11 @@ public class UpdateDoctorServlet extends HttpServlet {
         String pid          = req.getParameter("pid");
         String entrydate    = req.getParameter("entry_date");
 
+        String avatar = req.getParameter("avatar");
+
         //String job_number, String name, String phone, String email, Double registration_fee, String introduction, String entry_date, Professional_titles professional_titles_id
         Doctors doctor = new Doctors(jobnum,name,phone,email,Double.valueOf(registerfee),introduce,entrydate,Integer.parseInt(pid));
+        doctor.setAvatar(avatar);
 
         Part part = req.getPart("myfile");
         if(part != null && part.getSize()> 0){

@@ -50,6 +50,7 @@
                 <div class="field">
                     <input type="file" id="url1" name="myfile" class="input tips" style="width:25%; float:left;"  />
                     <img src="${pageContext.request.contextPath}/${doctors.avatar}" width="50px">
+                    <input type="hidden" name="avatar" value="${doctors.avatar}">
                     <%--<input type="button" class="button bg-blue margin-left" id="image1" value="+ 浏览上传" >--%>
                 </div>
             </div>
@@ -84,9 +85,7 @@
                     <label>个人简介：</label>
                 </div>
                 <div class="field">
-                    <textarea class="input" name="introduction" style="height:80px">
-                        ${doctors.introduction}
-                    </textarea>
+                    <textarea class="input" name="introduction" style="height:80px">${doctors.introduction}</textarea>
                     <div class="tips"></div>
                 </div>
             </div>
